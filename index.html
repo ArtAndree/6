@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анимированная машинка</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB 60%, #5D9E5D 60%, #5D9E5D 65%, #8B4513 65%);
+            overflow: hidden;
+            position: relative;
+        }
+        .sun {
+            position: absolute;
+            top: 50px;
+            right: 100px;
+            width: 60px;
+            height: 60px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #FFA500;
+        }
+        .road {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background: #333;
+        }
+
+        .road::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(
+                to right,
+                transparent,
+                transparent 20px,
+                yellow 20px,
+                yellow 40px
+            );
+            transform: translateY(-50%);
+        }
+        .car {
+            position: absolute;
+            bottom: 60px;
+            left: -200px;
+            width: 200px;
+            height: 70px;
+            animation: drive 5s ease-in-out forwards;
+        }
+        .car-body {
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background: #FF4136;
+            border-radius: 10px 10px 0 0;
+            bottom: 0;
+        }
+        .car-top {
+            position: absolute;
+            width: 80%;
+            height: 30px;
+            background: #FF4136;
+            border-radius: 20px 20px 0 0;
+            bottom: 40px;
+            left: 10%;
+        }
+        .windshield {
+            position: absolute;
+            width: 70%;
+            height: 25px;
+            background: #87CEEB;
+            border-radius: 10px 10px 0 0;
+            bottom: 30px;
+            left: 15%;
+        }
+        .wheel {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #333;
+            border-radius: 50%;
+            bottom: -5px;
+            border: 3px solid #666;
+        }
+
+        .front-wheel {
+            right: 25px;
+            animation: spin 0.5s linear infinite;
+        }
+
+        .back-wheel {
+            left: 25px;
+            animation: spin 0.5s linear infinite;
+        }
+        .headlight {
+            position: absolute;
+            width: 10px;
+            height: 5px;
+            background: yellow;
+            border-radius: 50%;
+            bottom: 15px;
+            right: 5px;
+        }
+        @keyframes drive {
+            0% {
+                left: -200px;
+            }
+            100% {
+                left: calc(100% - 250px);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sun"></div>
+    <div class="road"></div>
+    
+    <div class="car">
+        <div class="car-body"></div>
+        <div class="car-top"></div>
+        <div class="windshield"></div>
+        <div class="wheel front-wheel"></div>
+        <div class="wheel back-wheel"></div>
+        <div class="headlight"></div>
+    </div>
+</body>
+</html>
